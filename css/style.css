@@ -32,3 +32,8 @@
     background: #333;
     color: white;
 }
+
+.lab-nav a.active {
+    background: #333;
+    color: white;
+}
