@@ -34,7 +34,23 @@
     <p></p>
 
     <div id="chart"></div>
+    <div id="tooltip"></div>
 
+    
+    <section class="design-justification">
+        <h3>Design Justification</h3>
+
+        <p>
+        I chose a parallel coordinates plot because the dataset contains several variables with different types that need to be compared across the same set of cities. 
+        A scatter plot would require selecting only two variables for the main axes, while a parallel coordinates plot allows population, temperature, and development level to be viewed simultaneously for each city.
+        </p>
+        <p>
+        I use position for population and temperature because both are quantitative variables, and position provides a more precise way to compare numerical values than color or size.
+        Development level is mapped to an ordered axis because Low, Medium, and High have a natural ranking. 
+        Last but not least, region is encoded with color because it is categorical and has no inherent order. Each city is represented by a line connecting its values across the three axes, making it possible to identify patterns and compare cities across multiple dimensions. 
+        Tooltips provide exact values and city names when more detail is needed.
+        </p>
+    </section>
     <a href="../index.html">
         Back to home
     </a>
