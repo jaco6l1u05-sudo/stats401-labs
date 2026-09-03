@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Lab 3</title>
+    <title>Lab 3 - Web Data Acquisition</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
 
-    <h1>Lab 3</h1>
+    <h1>STATS 401: Data Acquisition and Visualization</h1>
 
     <nav class="lab-nav">
         <a href="../lab1/index.html">Lab 1</a>
@@ -26,14 +25,66 @@
         <a href="../lab9/index.html">Lab 9</a>
         <a href="../lab10/index.html">Lab 10</a>
     </nav>
-    
+
+    <h2>Lab 3: Web Data Acquisition</h2>
+
     <p>
-        Lab 3 will be added here.
+        This dataset contains earthquake records collected from
+        the United States Geological Survey earthquake catalog. The records
+        shown here are the first 1,000 earthquakes from 2024 in chronological
+        order.
     </p>
 
-    <a href="../index.html">
-        Back to home
-    </a>
+    <p>
+        <strong>Source:</strong>
+        <a href="https://earthquake.usgs.gov/fdsnws/event/1/">
+            USGS Earthquake Catalog API
+        </a>
+    </p>
+
+    <p>
+        <strong>Method:</strong> REST API using Python and requests.
+    </p>
+
+    <p>
+        <strong>Records collected:</strong> 1,000
+    </p>
+
+    <p><strong>Attributes</strong></p>
+
+    <ul>
+        <li><strong>id:</strong> unique event identifier assigned by USGS.</li>
+        <li><strong>time_utc:</strong> time when the earthquake occurred, in UTC.</li>
+        <li><strong>place:</strong> short text description of the event location.</li>
+        <li><strong>magnitude:</strong> measured earthquake magnitude.</li>
+        <li><strong>depth_km:</strong> estimated earthquake depth in kilometers.</li>
+        <li><strong>longitude:</strong> east-west geographic coordinate.</li>
+        <li><strong>latitude:</strong> north-south geographic coordinate.</li>
+        <li><strong>tsunami:</strong> whether a tsunami flag was assigned, where 1 means yes and 0 means no.</li>
+        <li><strong>felt_reports:</strong> number of public reports submitted to USGS, when available.</li>
+        <li><strong>significance:</strong> USGS significance score based on factors such as magnitude, felt reports, and impact.</li>
+    </ul>
+
+    <h2>Earthquake Data</h2>
+
+    <p>
+        Click a column heading to sort the table.
+        Click again to reverse the sorting order.
+    </p>
+
+    <div class="table-container">
+        <table id="data-table">
+            <thead></thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="lab3.js"></script>
+
+    <p>
+        <a href="../index.html">Back to home</a>
+    </p>
 
 </body>
 
