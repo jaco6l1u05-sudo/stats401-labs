@@ -6,13 +6,16 @@
 
     <meta charset="UTF-8">
 
-    <title>Lab 4</title>
+    <title>Lab 4 - Tweet Sentiment</title>
+
     <link rel="stylesheet" href="../css/style.css">
+
 </head>
 
 <body>
 
-    <h1>Lab 4</h1>
+    <h1>STATS 401: Data Acquisition and Visualization</h1>
+
     <nav class="lab-nav">
         <a href="../lab1/index.html">Lab 1</a>
         <a href="../lab2/index.html">Lab 2</a>
@@ -24,15 +27,58 @@
         <a href="../lab8/index.html">Lab 8</a>
         <a href="../lab9/index.html">Lab 9</a>
         <a href="../lab10/index.html">Lab 10</a>
-    
     </nav>
+
+    <h2>Lab 4: Cleaning Web Data for Visualization - How Did Elon Musk's Tweet Sentiment Change Over Time?</h2>
+
     <p>
-        Lab 4 will be added here.
+        This visualization shows the weekly average sentiment of Elon Musk's
+        tweets from July 2022 to June 2023. Point size represents the number
+        of tweets posted during each week.
+    </p>
+
+    <p>
+        <strong>Source:</strong>
+        <a href="https://www.kaggle.com/datasets/gpreda/elon-musk-tweets?resource=download">
+            Elon Musk Tweets
+        </a>
+    </p>
+
+    <p>
+        <strong>Tweets collected:</strong> 5,904
+    </p>
+
+    <div id="chart"></div>
+
+    <div id="tooltip"></div>
+
+    <h3>Analysis</h3>
+
+    <p>
+T   his dataset contains 5904 Elon Musk tweets collected between July 2022 and June 2023. 
+    During cleaning, I parsed the tweet dates, removed missing or empty tweet text, converted engagement variables such as retweets and favorites to numeric types, and checked for duplicates and invalid values. 
+    For text analysis, URLs, usernames, and numbers were normalized, followed by tokenization, stop-word removal, and lemmatization.
+    Sentiment was estimated using the CardiffNLP Twitter-RoBERTa model. 
+    For each tweet, the sentiment score was calculated as P(positive) - P(negative). 
+    The visualization shows weekly average sentiment over time, with point size representing the number of tweets posted that week. 
+    The results show generally positive sentiment across most of the period. 
+    Sentiment reached a particularly high level around late August 2022, while it became close to neutral during December 2022 and January 2023. 
+    There was also a noticeable negative dip around March 2023, followed by a recovery in April and May.
+    </p>
+
+    <p>
+        <strong>Note:</strong> Sentiment labels and scores are model-generated
+        estimates rather than ground-truth labels. Transformer-based sentiment
+        models may be less reliable for sarcasm, irony, slang, or context-dependent
+        expressions.
     </p>
 
     <a href="../index.html">
         Back to home
     </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="lab4.js"></script>
 
 </body>
 
