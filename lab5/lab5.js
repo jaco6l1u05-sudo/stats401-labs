@@ -22,8 +22,8 @@ Promise.all([
     // 1. NODE-LINK VISUALIZATION
     // =========================================================
 
-    const width = 900;
-    const height = 600;
+    const width = 800;
+    const height = 700;
     const graphLeft = 130;
     const graphRight = 780;
     const graphCenterX = (graphLeft + graphRight) / 2;
@@ -662,7 +662,7 @@ Promise.all([
     // 15. MATRIX SETTINGS
     // =========================================================
 
-    const matrixSize = 600;
+    const matrixSize = 500;
 
 
     const matrixMargin = {
