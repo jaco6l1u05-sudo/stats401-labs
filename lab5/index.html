@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
+    <title>Lab 5 — Interactive Network Visualization with D3</title>
 
-    <title>Lab 5</title>
+    <link rel="stylesheet" href="../css/style.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 </head>
 
 <body>
+    <h1>STATS 401: Data Acquisition and Visualization</h1>
 
-    <h1>Lab 5</h1>
     <nav class="lab-nav">
         <a href="../lab1/index.html">Lab 1</a>
         <a href="../lab2/index.html">Lab 2</a>
@@ -24,15 +24,124 @@
         <a href="../lab8/index.html">Lab 8</a>
         <a href="../lab9/index.html">Lab 9</a>
         <a href="../lab10/index.html">Lab 10</a>
-        <link rel="stylesheet" href="../css/style.css">
     </nav>
-    <p>
-        Lab 5 will be added here.
-    </p>
+    <h2>Lab 5: Interactive Network Visualization with D3 </h2>
+        <p>
+            This visualization represents a synthetic urban transit network
+            containing 50 stations and 50 direct transit connections.
+            Stations belong to five districts and have different passenger
+            volumes and station types. Routes have a travel time and a
+            transit service type.
+        </p>
+    <div id="network"></div>
 
+    <div id="tooltip"></div>
+    <section class="lab-description">
+
+        <h3>Node-Link Design</h3>
+
+        <p>
+            The node-link diagram uses color to represent district, node size
+            to represent daily passenger volume, and shape to represent
+            station type. Larger nodes indicate higher passenger volume,
+            while circles, squares, and triangles represent Local, Transfer,
+            and Terminal stations. Link width represents travel time, so
+            longer connections appear thicker, while link color represents
+            route type. Dragging allows the network structure to be explored,
+            and hovering highlights connected stations and displays station
+            information in a tooltip.
+        </p>
+
+
+        <h3>Adjacency Matrix Design</h3>
+
+        <p>
+            The adjacency matrix uses stations as both rows and columns.
+            Colored cells represent direct connections. Cell color represents
+            route type, while cell opacity represents travel time. Station
+            labels are colored by district. This makes individual connections
+            easy to locate and provides another way to inspect the network
+            structure without relying on the spatial layout of the node-link
+            diagram.
+        </p>
+
+
+        <h3>Network Questions and Findings</h3>
+
+        <ol>
+
+            <li>
+                <strong>Which stations appear central in the network?</strong>
+                <br>
+                <strong>Answerability:</strong> Well.
+                <strong>View:</strong> Node-link.
+                The node-link diagram makes local connectivity easiest to see.
+                Stations such as Stations 4, 7, 10, 13, 16, 18, 21, 23,
+                25, 29, 31, 33, 34, and 38 appear more central because they
+                have more direct connections.
+            </li>
+
+            <li>
+                <strong>Which districts are strongly connected to one another?</strong>
+                <br>
+                <strong>Answerability:</strong> Partially.
+                <strong>View:</strong> Both.
+                District colors help identify the endpoints, while the matrix
+                makes connection patterns easier to compare. East–South has
+                the strongest cross-district connection pattern, although the
+                matrix is not ordered by district.
+            </li>
+
+            <li>
+                <strong>Where are transfer or terminal stations located in the topology?</strong>
+                <br>
+                <strong>Answerability:</strong> Well.
+                <strong>View:</strong> Node-link.
+                Shapes make these stations easy to identify. Transfer stations
+                are shown as squares and terminal stations as triangles, and
+                they are distributed throughout the network rather than being
+                confined to one region.
+            </li>
+
+            <li>
+                <strong>Which stations have high passenger volume?</strong>
+                <br>
+                <strong>Answerability:</strong> Well.
+                <strong>View:</strong> Node-link.
+                Passenger volume is encoded by node size, so the largest
+                stations are immediately visible. Station 50 has the highest
+                passenger volume and appears as one of the largest nodes.
+            </li>
+
+            <li>
+                <strong>Where are the longest direct travel-time connections?</strong>
+                <br>
+                <strong>Answerability:</strong> Well.
+                <strong>View:</strong> Both.
+                Thicker links identify longer travel times, while matrix cell
+                opacity provides another indication. The longest direct
+                connection is between Station 7 and Station 31 at 16 minutes.
+            </li>
+
+            <li>
+                <strong>Are particular route types concentrated in particular parts of the network?</strong>
+                <br>
+                <strong>Answerability:</strong> Partially.
+                <strong>View:</strong> Both.
+                Route colors can be followed in the node-link diagram and
+                compared in the matrix. Express, Shuttle, and Metro routes
+                are distributed across the network, with no strong
+                concentration in one particular region.
+            </li>
+
+        </ol>
+
+    </section>
     <a href="../index.html">
         Back to home
     </a>
+
+    <script src="lab5.js"></script>
 
 </body>
 
