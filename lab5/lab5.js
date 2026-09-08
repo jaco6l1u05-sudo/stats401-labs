@@ -17,10 +17,7 @@ Promise.all([
     console.log(stations);
     console.log(routes);
 
-
-    // =========================================================
     // 1. NODE-LINK VISUALIZATION
-    // =========================================================
 
     const width = 800;
     const height = 700;
@@ -32,10 +29,6 @@ Promise.all([
         .attr("width", width)
         .attr("height", height);
 
-
-    // =========================================================
-    // 2. SCALES
-    // =========================================================
 
     // District -> node color
     const districtColor = d3.scaleOrdinal()
@@ -70,11 +63,6 @@ Promise.all([
         )
         .range([1.5, 6]);
 
-
-    // =========================================================
-    // 3. LINKS
-    // =========================================================
-
     const link = svg.append("g")
         .attr("class", "links")
         .selectAll("line")
@@ -90,11 +78,6 @@ Promise.all([
         )
         .attr("stroke-opacity", 0.6);
 
-
-    // =========================================================
-    // 4. NODES
-    // =========================================================
-
     const node = svg.append("g")
         .attr("class", "nodes")
         .selectAll(".node")
@@ -102,15 +85,9 @@ Promise.all([
         .join("g")
         .attr("class", "node");
 
-
-    // =========================================================
-    // 5. STATION SHAPES
-    //
     // District       -> color
     // Passenger      -> size
     // Station type   -> shape
-    // =========================================================
-
     node.each(function(d) {
 
         const g = d3.select(this);
@@ -168,11 +145,6 @@ Promise.all([
         }
     });
 
-
-    // =========================================================
-    // 6. STATION LABELS
-    // =========================================================
-
     const label = svg.append("g")
         .attr("class", "labels")
         .selectAll("text")
@@ -185,10 +157,6 @@ Promise.all([
         .attr("fill", "black")
         .attr("pointer-events", "none");
 
-
-    // =========================================================
-    // 7. FORCE SIMULATION
-    // =========================================================
 
     const simulation = d3.forceSimulation(stations)
 
@@ -205,7 +173,6 @@ Promise.all([
                 .strength(-140)
         )
 
-        // Keep the network in the right-hand area
         .force(
             "x",
             d3.forceX(graphCenterX)
@@ -225,10 +192,6 @@ Promise.all([
                     d => nodeSize(d.daily_passengers) + 15
                 )
         );
-
-    // =========================================================
-    // 8. UPDATE POSITIONS
-    // =========================================================
 
     simulation.on("tick", () => {
 
@@ -253,10 +216,7 @@ Promise.all([
     });
 
 
-    // =========================================================
-    // 9. DRAGGING
-    // =========================================================
-
+    // 2. DRAGGING
     node.call(
         d3.drag()
             .on("start", dragStarted)
@@ -296,10 +256,6 @@ Promise.all([
     }
 
 
-    // =========================================================
-    // 10. CONNECTION HELPER
-    // =========================================================
-
     function isConnected(a, b) {
 
         return routes.some(route =>
@@ -319,16 +275,7 @@ Promise.all([
     }
 
 
-    // =========================================================
-    // 11. TOOLTIP
-    // =========================================================
-
     const tooltip = d3.select("#tooltip");
-
-
-    // =========================================================
-    // 12. HIGHLIGHT + TOOLTIP
-    // =========================================================
 
     node
 
@@ -436,11 +383,6 @@ Promise.all([
                     .style("opacity", 0);
             }
         );
-
-
-    // =========================================================
-    // 13. LEGEND
-    // =========================================================
 
     const legend = svg.append("g")
         .attr("transform", "translate(20,20)");
@@ -595,11 +537,7 @@ Promise.all([
             .text(type);
     });
 
-
-    // =========================================================
-    // 14. ADJACENCY MATRIX
-    // =========================================================
-
+    // 3. ADJACENCY MATRIX
     const matrixData = [];
 
 
@@ -657,11 +595,6 @@ Promise.all([
         matrixData.length
     );
 
-
-    // =========================================================
-    // 15. MATRIX SETTINGS
-    // =========================================================
-
     const matrixSize = 500;
 
 
@@ -701,11 +634,6 @@ Promise.all([
             )`
         );
 
-
-    // =========================================================
-    // 16. MATRIX SCALES
-    // =========================================================
-
     const matrixX = d3.scaleBand()
         .domain(
             stations.map(d => d.id)
@@ -721,13 +649,9 @@ Promise.all([
         .range([0, matrixSize])
         .padding(0.05);
 
-
-    // =========================================================
-    // 17. MATRIX COLORS
-    //
+    // 4. MATRIX COLORS
     // Route type -> hue
     // Travel time -> opacity
-    // =========================================================
 
     const matrixRouteColor =
         d3.scaleOrdinal()
@@ -744,11 +668,6 @@ Promise.all([
                 )
             )
             .range([0.35, 1]);
-
-
-    // =========================================================
-    // 18. MATRIX CELLS
-    // =========================================================
 
     const matrixCell = matrixGroup
         .append("g")
@@ -793,11 +712,6 @@ Promise.all([
             "stroke",
             "#ddd"
         );
-
-
-    // =========================================================
-    // 19. MATRIX LABELS
-    // =========================================================
 
     // Bottom labels
     matrixGroup
@@ -880,11 +794,6 @@ Promise.all([
             d => d.station_name
         );
 
-
-    // =========================================================
-    // 20. MATRIX TOOLTIP
-    // =========================================================
-
     matrixCell
 
         .on(
@@ -950,10 +859,6 @@ Promise.all([
             }
         );
 
-
-    // =========================================================
-    // 21. MATRIX LEGEND
-    // =========================================================
 
     const matrixLegend =
         matrixSvg.append("g")
