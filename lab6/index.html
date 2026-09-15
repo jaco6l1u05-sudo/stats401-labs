@@ -6,13 +6,14 @@
 
     <meta charset="UTF-8">
 
-    <title>Lab 6</title>
+    <title>Lab 6 - Hierarchical GDP Visualization</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
 
-    <h1>Lab 6</h1>
+    <h1>STATS 401: Data Acquisition and Visualization</h1>
+
     <nav class="lab-nav">
         <a href="../lab1/index.html">Lab 1</a>
         <a href="../lab2/index.html">Lab 2</a>
@@ -26,9 +27,40 @@
         <a href="../lab10/index.html">Lab 10</a>
     
     </nav>
+    <h2>Lab 6: Hierarchical Data Visualization - Trees and Treemaps</h2>    
+    
     <p>
-        Lab 6 will be added here.
+        This visualization represents a hierarchical global GDP dataset 
+        containing countries from different continents and areas. 
+        Countries have different GDP values and GDP status categories indicating whether their GDP has increased, 
+        remained unchanged, or decreased.
     </p>
+    <h3>Treemap 1: Squarify</h3>
+
+    <div id="treemap1"></div>
+
+    <h3>Treemap 2: Binary</h3>
+
+    <div id="treemap2"></div>
+
+    <h4>GDP Status</h4>
+
+    <div>
+        <span style="color: green;">■</span> Increase
+        <span style="color: gray;">■</span> Unchanged
+        <span style="color: red;">■</span> Decrease
+    </div>
+
+    <div id="tooltip" class="tooltip"></div>
+
+    <h3>Design description</h3>
+    <p>
+    Both treemaps use rectangle area to represent GDP, so countries with larger GDP values occupy larger areas. GDP status is represented by color: green indicates an increase, gray indicates unchanged GDP, and red indicates a decrease. The hierarchy is organized from World to continent, area, and country, allowing users to examine GDP at different levels of the hierarchy. Tooltips provide additional information about each country.
+
+    The two treemaps use different spatial subdivision strategies. The first uses Squarify, which generally tries to keep rectangle aspect ratios closer to squares. However, countries with very large GDP values can still produce large or elongated rectangles. The second uses Binary tiling, which recursively divides the available space into two groups. This produces a different spatial arrangement and can make the divisions of the hierarchy more apparent. Comparing the two layouts demonstrates how tiling strategy can change the spatial organization of the same data while preserving the same GDP and status encodings.
+    </p>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="lab6.js"></script>
 
     <a href="../index.html">
         Back to home
