@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualization Critique and Redesign</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <a class="course-link" href="../index.html">STATS 401</a>
+        <span>Individual Project</span>
+    </header>
+
+    <nav class="lab-nav" aria-label="Course website navigation">
+        <a href="../lab1/index.html">Lab 1</a>
+        <a href="../lab2/index.html">Lab 2</a>
+        <a href="../lab3/index.html">Lab 3</a>
+        <a href="../lab4/index.html">Lab 4</a>
+        <a href="../lab5/index.html">Lab 5</a>
+        <a href="../lab6/index.html">Lab 6</a>
+        <a href="../lab7/index.html">Lab 7</a>
+        <a href="../lab8/index.html">Lab 8</a>
+        <a href="../lab9/index.html">Lab 9</a>
+        <a href="../lab10/index.html">Lab 10</a>
+        <a class="active" href="index.html">Visualization Critique and Redesign</a>
+    </nav>
+
+    <main>
+        <section class="intro">
+            <p class="eyebrow">Visualization Critique and Redesign</p>
+            <h1>Making redistribution visible</h1>
+            <p class="lede">
+                A critique and D3.js redesign of an Our World in Data chart comparing
+                income inequality before and after taxes and transfers.
+            </p>
+        </section>
+
+        <section aria-labelledby="original-heading">
+            <div class="section-heading">
+                <div>
+                    <p class="section-number">01</p>
+                    <h2 id="original-heading">Original visualization</h2>
+                </div>
+                <a class="source-link"
+                    href="https://ourworldindata.org/grapher/income-inequality-in-market-and-disposable-income-across-the-world"
+                    target="_blank" rel="noopener noreferrer">
+                    View original source
+                </a>
+            </div>
+
+            <figure class="original-figure">
+                <img src="assets/original_visualization.png"
+                    alt="Original scatterplot from Our World in Data comparing market Gini on the horizontal axis with disposable Gini on the vertical axis for countries around the world.">
+                <figcaption>
+                    <strong>Income inequality in market and disposable income across the world.</strong>
+                    Our World in Data, based on Wang, Caminada, and Solt (2016). The downloaded
+                    chart is dated 2020, but individual country observations range from 2011 to 2020.
+                </figcaption>
+            </figure>
+
+            <div class="context-grid">
+                <article>
+                    <h3>Intended message</h3>
+                    <p>
+                        Taxes and social transfers reduce measured income inequality in most countries,
+                        but the size of that reduction differs substantially across countries.
+                    </p>
+                </article>
+                <article>
+                    <h3>Audience</h3>
+                    <p>
+                        Students, policy readers, and members of the public who want to compare inequality
+                        before and after government redistribution.
+                    </p>
+                </article>
+                <article>
+                    <h3>Viewer tasks</h3>
+                    <p>
+                        Compare countries, identify high-inequality cases, estimate the reduction between
+                        the two Gini measures, and notice regional patterns or outliers.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section aria-labelledby="critique-heading">
+            <div class="section-heading">
+                <div>
+                    <p class="section-number">02</p>
+                    <h2 id="critique-heading">Critique</h2>
+                </div>
+            </div>
+
+            <div class="critique-columns">
+                <div>
+                    <h3 class="strength-heading">What works</h3>
+                    <article class="finding strength">
+                        <span class="finding-index">S1</span>
+                        <div>
+                            <h4>A shared quantitative scale supports comparison</h4>
+                            <p>
+                                Both axes show Gini coefficients with comparable limits. The diagonal reference
+                                line gives a meaningful baseline: a country on the line would show no difference
+                                between market and disposable income inequality.
+                            </p>
+                        </div>
+                    </article>
+                    <article class="finding strength">
+                        <span class="finding-index">S2</span>
+                        <div>
+                            <h4>The chart reveals broad patterns and exceptional cases</h4>
+                            <p>
+                                Position efficiently shows that every plotted country lies below the equality
+                                line. South Africa also stands out immediately as an unusually high-inequality case.
+                            </p>
+                        </div>
+                    </article>
+                </div>
+
+                <div>
+                    <h3 class="weakness-heading">What limits the message</h3>
+                    <article class="finding weakness">
+                        <span class="finding-index">W1</span>
+                        <div>
+                            <h4>The main comparison requires mental geometry</h4>
+                            <p>
+                                The policy-relevant quantity is the reduction from market to disposable Gini.
+                                Readers must estimate diagonal distance from the reference line, a less precise task
+                                than comparing aligned positions or lengths.
+                            </p>
+                        </div>
+                    </article>
+                    <article class="finding weakness">
+                        <span class="finding-index">W2</span>
+                        <div>
+                            <h4>Selective labels hide most countries</h4>
+                            <p>
+                                Only a subset of points receives a label. Overlap near the center makes identification
+                                difficult, and color requires repeated movement between points and a distant legend.
+                            </p>
+                        </div>
+                    </article>
+                    <article class="finding weakness">
+                        <span class="finding-index">W3</span>
+                        <div>
+                            <h4>Region color competes with the central question</h4>
+                            <p>
+                                Six categorical colors emphasize geography even though the main message concerns
+                                redistribution. Similar colors for North and South America are also difficult to
+                                distinguish at the small point size.
+                            </p>
+                        </div>
+                    </article>
+                    <article class="finding weakness">
+                        <span class="finding-index">W4</span>
+                        <div>
+                            <h4>The headline obscures inconsistent observation years</h4>
+                            <p>
+                                The title says 2020, while most observations come from earlier years. A note explains
+                                this at the bottom, but viewers may interpret the display as a synchronized snapshot.
+                            </p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section aria-labelledby="redesign-heading">
+            <div class="section-heading redesign-heading">
+                <div>
+                    <p class="section-number">03</p>
+                    <h2 id="redesign-heading">Redesigned visualization</h2>
+                    <p class="section-deck">
+                        Each row uses aligned positions to show inequality before and after redistribution.
+                        The connecting line directly encodes the reduction.
+                    </p>
+                </div>
+                <div class="metric-legend" aria-label="Chart legend">
+                    <span><i class="legend-dot disposable"></i>Disposable Gini</span>
+                    <span><i class="legend-dot market"></i>Market Gini</span>
+                </div>
+            </div>
+
+            <div class="controls" aria-label="Visualization controls">
+                <label>
+                    <span>Sort countries by</span>
+                    <select id="sort-select">
+                        <option value="reduction">Largest reduction</option>
+                        <option value="disposable">Highest disposable Gini</option>
+                        <option value="market">Highest market Gini</option>
+                        <option value="country">Country name</option>
+                    </select>
+                </label>
+
+                <label>
+                    <span>Region</span>
+                    <select id="region-select">
+                        <option value="all">All regions</option>
+                    </select>
+                </label>
+
+                <label class="search-label">
+                    <span>Find a country</span>
+                    <input id="country-search" type="search" placeholder="e.g. Japan">
+                </label>
+
+                <label class="toggle-label">
+                    <input id="label-toggle" type="checkbox">
+                    <span>Show values</span>
+                </label>
+
+                <button id="reset-button" type="button">Reset</button>
+            </div>
+
+            <div class="summary-strip" aria-live="polite">
+                <div>
+                    <span id="country-count" class="summary-value">44</span>
+                    <span class="summary-label">countries shown</span>
+                </div>
+                <div>
+                    <span id="median-reduction" class="summary-value">0.16</span>
+                    <span class="summary-label">median Gini reduction</span>
+                </div>
+                <p id="chart-status">Sorted by largest reduction.</p>
+            </div>
+
+            <div id="chart" class="chart-container"></div>
+            <div id="tooltip" class="tooltip" role="tooltip"></div>
+
+            <p class="chart-note">
+                Market Gini measures inequality before taxes and transfers; disposable Gini measures
+                inequality after them. A longer connector indicates a larger absolute reduction.
+                Country years vary from 2011 to 2020 and appear in the tooltip.
+            </p>
+        </section>
+
+        <section aria-labelledby="decisions-heading">
+            <div class="section-heading">
+                <div>
+                    <p class="section-number">04</p>
+                    <h2 id="decisions-heading">Redesign decisions</h2>
+                </div>
+            </div>
+
+            <div class="decision-list">
+                <article>
+                    <span>1</span>
+                    <div>
+                        <h3>Replace the scatterplot with a dumbbell plot</h3>
+                        <p>
+                            The redesign places both measurements on one horizontal scale for every country.
+                            The line between them makes the reduction a visible length, addressing the difficult
+                            diagonal-distance judgment in the original.
+                        </p>
+                    </div>
+                </article>
+                <article>
+                    <span>2</span>
+                    <div>
+                        <h3>Label every country and support purposeful ordering</h3>
+                        <p>
+                            Country names align in a dedicated column, eliminating selective labels and overlap.
+                            Sorting by reduction, either Gini measure, or name supports distinct comparison tasks.
+                        </p>
+                    </div>
+                </article>
+                <article>
+                    <span>3</span>
+                    <div>
+                        <h3>Use color for measure type rather than region</h3>
+                        <p>
+                            A restrained two-color encoding distinguishes before and after values. Region remains
+                            available as a filter, so geography can be explored without competing with the main message.
+                        </p>
+                    </div>
+                </article>
+                <article>
+                    <span>4</span>
+                    <div>
+                        <h3>Expose observation year at the point of inspection</h3>
+                        <p>
+                            The tooltip reports each country's actual year, and the chart note states the full range.
+                            This makes the asynchronous data limitation visible before users draw temporal conclusions.
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="report" aria-labelledby="report-heading">
+            <div class="section-heading">
+                <div>
+                    <p class="section-number">05</p>
+                    <h2 id="report-heading">Critique and redesign report</h2>
+                </div>
+                <span class="word-count">Approximately 600 words</span>
+            </div>
+
+            <article class="report-copy">
+                <h3>Original visualization and context</h3>
+                <p>
+                    The selected visualization is Our World in Data's <em>Income inequality in market and
+                    disposable income across the world</em>, adapted from Figure 5.16 of the CORE Team's
+                    <em>The Economy</em> and based on Wang, Caminada, and Solt (2016). It plots market Gini on
+                    the horizontal axis and disposable Gini on the vertical axis. Market income is measured before
+                    taxes and social transfers, while disposable income reflects resources after those interventions.
+                    The intended message is that redistribution lowers inequality, although the magnitude varies by
+                    country. The likely audience includes students, policy readers, and the general public. Their main
+                    tasks are to compare countries, locate high-inequality cases, estimate the redistributive reduction,
+                    and identify broad regional patterns.
+                </p>
+
+                <h3>Critique</h3>
+                <p>
+                    The original has two important strengths. First, both axes represent comparable Gini coefficients
+                    and use similar ranges. The diagonal equality line supplies a meaningful reference: points on it
+                    would indicate no change between the two measures. Second, the two-dimensional position provides
+                    an efficient overview. Every point falls below the equality line, making the general reduction
+                    visible, while South Africa is immediately recognizable as an extreme high-inequality case.
+                </p>
+                <p>
+                    However, the design makes the central comparison harder than necessary. The meaningful quantity is
+                    the difference between market and disposable Gini, but viewers must judge a point's diagonal distance
+                    from the equality line. People compare positions on a common axis more accurately than unaligned
+                    distances, so ranking countries by redistribution is difficult. The labeling strategy creates a
+                    second problem. Only selected countries are named, many points cluster around the center, and users
+                    cannot identify every observation from the static chart. Third, color primarily encodes world region.
+                    That may support a secondary geographic question, but it competes with the before-and-after comparison;
+                    some hues are also similar at the small mark size. Finally, the title presents the chart as 2020 even
+                    though the CSV contains country observations from 2011 through 2020. The footnote discloses this, but
+                    its position and density make the limitation easy to miss.
+                </p>
+
+                <h3>Redesign rationale</h3>
+                <p>
+                    The redesign uses a horizontal dumbbell plot. Each country occupies one row, with a dark point for
+                    market Gini, a teal point for disposable Gini, and a connecting line whose length equals the absolute
+                    reduction. This directly addresses the first weakness by turning diagonal distance into length along
+                    a shared scale. Countries are labeled consistently and can be sorted by reduction, either Gini measure,
+                    or alphabetically. Search and region filtering further reduce the cost of locating a country. These
+                    choices address overlap and selective labeling without adding decorative interaction.
+                </p>
+                <p>
+                    Color now distinguishes the two measures rather than regions. Region remains available as a filter,
+                    preserving that analytical task while giving the primary comparison greater visual priority. A tooltip
+                    provides exact values, the absolute and percentage reduction, region, and observation year. The year
+                    range also appears below the chart so viewers encounter the comparability limitation in the same area
+                    as the data. A value-label toggle allows precise reading while keeping the default display uncluttered.
+                </p>
+
+                <h3>Original versus redesign</h3>
+                <p>
+                    The redesigned view makes it easier to rank countries by redistribution, compare before-and-after
+                    values, locate a named country, and retrieve its actual data year. It gives up the compact two-dimensional
+                    overview and makes correlation between market and disposable Gini less visually immediate. The chart is
+                    also taller because every country receives a row. These are reasonable trade-offs because the project's
+                    primary task is comparison, not estimating correlation. A remaining limitation is that the data combine
+                    different years and measure absolute Gini changes without establishing causality. Taxes and transfers
+                    contribute to the difference, but this descriptive chart alone cannot evaluate individual policies.
+                </p>
+            </article>
+        </section>
+
+        <section class="references" aria-labelledby="references-heading">
+            <h2 id="references-heading">Data and references</h2>
+            <ol>
+                <li>
+                    Our World in Data. “Income inequality in market and disposable income across the world.”
+                    Data downloaded September 27, 2026.
+                </li>
+                <li>
+                    Wang, C., Caminada, K., and Solt, F. (2016). “Disentangling income inequality and the
+                    redistributive effect of social transfers and taxes in 36 LIS countries.”
+                </li>
+                <li>
+                    The CORE Team. <em>The Economy</em>, Unit 5, Section 5.12, Figure 5.16.
+                </li>
+            </ol>
+            <p>
+                Source files: <a href="data/owid_income_inequality.csv">CSV data</a> and
+                <a href="data/owid_income_inequality.metadata.json">metadata</a>.
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <span>STATS 401 · Data Acquisition and Visualization</span>
+        <a href="../index.html">Back to course website</a>
+    </footer>
+
+    <script src="vendor/d3.v7.min.js"></script>
+    <script src="redesign.js"></script>
+</body>
+
+</html>
