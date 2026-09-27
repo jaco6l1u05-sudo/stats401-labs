@@ -6,13 +6,16 @@
 
     <meta charset="UTF-8">
 
-    <title>Lab 8</title>
+    <title>Lab 8 — Web Text Data and Visualization</title>
+
     <link rel="stylesheet" href="../css/style.css">
+
 </head>
 
 <body>
 
-    <h1>Lab 8</h1>
+    <h1>STATS 401: Data Acquisition and Visualization</h1>
+
     <nav class="lab-nav">
         <a href="../lab1/index.html">Lab 1</a>
         <a href="../lab2/index.html">Lab 2</a>
@@ -24,11 +27,216 @@
         <a class="active" href="../lab8/index.html">Lab 8</a>
         <a href="../lab9/index.html">Lab 9</a>
         <a href="../lab10/index.html">Lab 10</a>
-    
     </nav>
+
+    <h2>Lab 8: Web Text Data and Visualization</h2>
+
     <p>
-        Lab 8 will be added here.
+        This visualization explores the Duke Kunshan University
+        Undergraduate Instruction Bulletin 2021–2022 using semantic
+        embeddings, semantic topics, and the original bulletin structure.
     </p>
+
+    <section class="findings">
+
+        <h2>Corpus Summary</h2>
+
+        <p>
+            The cleaned corpus contains 2,682 meaningful text passages.
+            The average passage contains approximately 37.4 words,
+            while the median passage length is 11 words.
+            The corpus contains 127 formal bulletin sections.
+        </p>
+
+        <p>
+            The largest formal sections by passage count are
+            Course Descriptions and Majors, showing that the corpus
+            contains substantial detailed academic and course information.
+        </p>
+
+        <h2>Semantic Analysis</h2>
+
+        <p>
+            Semantic embeddings were generated using the
+            <strong>all-MiniLM-L6-v2</strong> Sentence Transformer model.
+            The resulting 384-dimensional embeddings were reduced to two
+            dimensions using UMAP with 15 neighbors, a minimum distance of
+            0.15, cosine distance, and random state 401.
+        </p>
+
+        <p>
+            K-Means clustering with 8 clusters was used to organize passages
+            into semantic topics. The clusters were interpreted using
+            representative passages and TF-IDF terms.
+        </p>
+
+    </section>
+
+    <section class="controls">
+
+        <label for="search">
+            Search passages:
+        </label>
+
+        <input
+            type="text"
+            id="search"
+            placeholder="Search text..."
+        >
+
+        <label for="section-filter">
+            Formal Section:
+        </label>
+
+        <select id="section-filter">
+            <option value="all">All Sections</option>
+        </select>
+
+        <label for="topic-filter">
+            Semantic Topic:
+        </label>
+
+        <select id="topic-filter">
+            <option value="all">All Topics</option>
+        </select>
+
+        <button id="reset-button">
+            Reset
+        </button>
+
+        <p id="filter-status"></p>
+
+    </section>
+
+    <section class="visualization-section">
+
+        <h2>Semantic Embedding Map</h2>
+
+        <p>
+            Each point represents one bulletin passage.
+            Position represents semantic similarity in the 2D UMAP projection.
+            Color represents semantic topic, and point size represents passage length.
+        </p>
+
+        <div id="map"></div>
+
+    </section>
+
+    <section class="detail-section">
+
+        <h2>Passage Details</h2>
+
+        <div id="details">
+            <p>
+                Click a passage to view its details.
+            </p>
+        </div>
+
+    </section>
+
+    <section class="matrix-section">
+
+        <h2>Topic × Bulletin Section Matrix</h2>
+
+        <p>
+            Each cell shows the number of passages belonging to a semantic
+            topic within a formal bulletin section.
+        </p>
+
+        <div id="matrix"></div>
+
+    </section>
+
+    <section class="legend-section">
+
+        <h2>Semantic Topics</h2>
+
+        <div id="topic-legend"></div>
+
+    </section>
+
+    <section class="findings">
+
+        <h2>Analytical Questions</h2>
+
+        <h3>1. What are the major semantic topics?</h3>
+
+        <p>
+            The clustering identifies eight broad topics:
+            Arts, Media & Humanities; Academic Policies & Study Away;
+            Chinese Studies & History; Social Sciences & Culture;
+            Course Prerequisites; Environmental & Health Sciences;
+            Political Science & Public Policy; and Computer Science &
+            Natural Sciences.
+        </p>
+
+        <h3>2. Do semantic topics appear across multiple formal sections?</h3>
+
+        <p>
+            Yes. The Topic × Section matrix shows that several semantic
+            topics occur across multiple formal bulletin sections.
+            This demonstrates that semantic organization does not always
+            follow the Bulletin's formal hierarchy.
+        </p>
+
+        <h3>3. Can passages from different sections be semantically similar?</h3>
+
+        <p>
+            Yes. Selecting a passage displays its five most semantically
+            similar passages. These neighbors can come from different
+            formal sections, revealing relationships that are not obvious
+            from the original document structure.
+        </p>
+
+        <h3>4. Does a keyword search correspond to only one semantic topic?</h3>
+
+        <p>
+            Not necessarily. A search term can occur in passages belonging
+            to multiple semantic topics. Combining search with topic and
+            section filters allows these different semantic contexts to
+            be explored.
+        </p>
+
+    </section>
+
+    <section class="findings">
+
+        <h2>Design Description and Findings</h2>
+
+        <p>
+            This visualization uses two coordinated views to compare the
+            formal structure of the Duke Kunshan University Undergraduate
+            Instruction Bulletin with its semantic structure. Each passage
+            is represented as one point in the embedding map. UMAP reduces
+            the 384-dimensional sentence embeddings to two dimensions so
+            that semantically similar passages can be viewed near one
+            another. Position therefore represents semantic similarity,
+            rather than two independently interpretable variables. Color
+            represents the semantic topic assigned by K-Means clustering,
+            while point size represents passage length. These encodings
+            provide multiple attributes without overcrowding the map.
+            The Topic × Bulletin Section matrix provides a complementary
+            view of the same corpus. Rows represent the Bulletin's formal
+            sections, columns represent semantic topics, and cell intensity
+            represents the number of passages in each combination. Search,
+            section filtering, and topic filtering allow users to focus on
+            specific parts of the corpus, while zooming and panning support
+            exploration of dense regions. Clicking a passage displays its
+            metadata, original text, and five nearest semantic neighbors.
+            Clicking a matrix cell highlights the corresponding passages
+            on the semantic map, creating a coordinated interaction between
+            the two views. The visualization shows that semantic topics
+            can cross formal section boundaries, providing a different way
+            to explore relationships within the Bulletin.
+        </p>
+
+    </section>
+
+    <div id="tooltip"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+
+    <script src="lab8.js"></script>
 
     <a href="../index.html">
         Back to home
