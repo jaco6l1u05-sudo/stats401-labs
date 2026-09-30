@@ -178,3 +178,52 @@
 #matrix .matrix-header {
     font-size: 12px;
 }
+
+.lab9-page {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.lab9-page section {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.lab9-page #choropleth,
+.lab9-page #cartogram {
+    width: calc(100vw - 16px);
+    max-width: 960px;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.lab9-page #choropleth svg,
+.lab9-page #cartogram svg {
+    display: block;
+    width: 100% !important;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    touch-action: none;
+    cursor: grab;
+}
+
+.lab9-page #cartogram .cartogram {
+    width: 100% !important;
+    max-width: 100%;
+}
+
+.lab9-page #cartogram .float-tooltip-kap {
+    display: none !important;
+}
+
+.lab9-page #choropleth .tick text,
+.lab9-page #cartogram .tick text {
+    font-family: sans-serif;
+    font-size: 10px;
+}
+
+.lab9-page #choropleth svg:active,
+.lab9-page #cartogram svg:active {
+    cursor: grabbing;
+}

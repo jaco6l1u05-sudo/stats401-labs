@@ -5,14 +5,15 @@
 <head>
 
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Lab 9</title>
+    <title>Lab 9 — Geospatial Visualization with D3</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<body>
+<body class="lab9-page">
 
-    <h1>Lab 9</h1>
+    <h1>STATS 401: Data Acquisition and Visualization </h1>
     <nav class="lab-nav">
         <a href="../lab1/index.html">Lab 1</a>
         <a href="../lab2/index.html">Lab 2</a>
@@ -28,13 +29,78 @@
     
     </nav>
     <p>
-        Lab 9 will be added here.
+
+    <h2>Lab 9: Geospatial Visualization with D3</h2>
+
+    <section>
+        <p>
+            This visualization uses nominal GDP estimates for the 50 largest
+            economies in 2025. GDP is measured in billions of current U.S. dollars.
+            Countries outside the dataset are displayed as missing data.
+        </p>
+    </section>
+
+    <section>
+        <h3>2025 GDP Choropleth</h3>
+        <p>
+            Color represents nominal GDP. Darker countries have larger economies.
+        </p>
+        <div id="choropleth"></div>
+    </section>
+
+    <section>
+        <h3>2025 GDP Cartogram</h3>
+        <p>
+            Country area represents nominal GDP in 2025.
+        </p>
+        <div id="cartogram"></div>
+    </section>
+
+    <section>
+        <h3>Design and Comparison</h3>
+        <div id="comparison">
+            <p>
+                In the choropleth, the United States and China are most prominent
+                because they receive the darkest colors, while other top-50
+                economies remain visible without overwhelming the scale. I use a
+                logarithmic color scale because GDP is highly skewed; a linear
+                scale would compress most countries into similar pale colors. The
+                choropleth preserves country shapes, relative positions, coastlines,
+                and regional context, so it best supports questions about where
+                high-GDP economies cluster and how neighboring countries compare.
+            </p>
+            <p>
+                In the cartogram, area rather than geographic size represents GDP.
+                The United States, China, Germany, Japan, and India expand, while
+                geographically large but lower-GDP economies shrink. Small but
+                economically important countries become easier to notice. This
+                makes ranking and comparing global economic magnitude more
+                immediate, but it distorts land area, boundaries, distances, and
+                recognizable shapes. The cartogram therefore better supports
+                questions about which economies dominate total output and how large
+                their economic shares are.
+            </p>
+            <p>
+                Changing from color to area makes differences in economic size feel
+                more dramatic. The choropleth emphasizes geographic pattern; the
+                cartogram emphasizes magnitude. Neither view is universally better:
+                linked highlighting helps users connect distorted countries back to
+                their familiar locations and use the two encodings together.
+            </p>
+        </div>
+    </section>
+
+    <div id="tooltip" class="tooltip"></div>
     </p>
 
     <a href="../index.html">
         Back to home
     </a>
 
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="https://unpkg.com/topojson-server@3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cartogram-chart@1.4.4"></script>
+    <script src="lab9.js"></script>
 </body>
 
 </html>
