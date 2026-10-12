@@ -8,7 +8,8 @@ const state = {
 };
 
 const sortLabels = {
-    reduction: "largest reduction",
+    reduction: "largest absolute reduction",
+    percentReduction: "largest percent reduction",
     disposable: "highest disposable Gini",
     market: "highest market Gini",
     country: "country name"
@@ -56,6 +57,7 @@ d3.csv(DATA_PATH, d => {
 
         const comparators = {
             reduction: (a, b) => d3.descending(a.reduction, b.reduction),
+            percentReduction: (a, b) => d3.descending(a.percentReduction, b.percentReduction),
             disposable: (a, b) => d3.descending(a.disposable, b.disposable),
             market: (a, b) => d3.descending(a.market, b.market),
             country: (a, b) => d3.ascending(a.country, b.country)

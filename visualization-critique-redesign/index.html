@@ -11,8 +11,8 @@
 
 <body>
     <header class="site-header">
-        <a class="course-link" href="../index.html">STATS 401</a>
-        <span>Individual Project</span>
+        <a class="course-link" href="../index.html">STATS 401: Data Acquisition and Visualization</a>
+        <span class="project-label">Individual Project</span>
     </header>
 
     <nav class="lab-nav" aria-label="Course website navigation">
@@ -150,8 +150,8 @@
                             <h4>Region color competes with the central question</h4>
                             <p>
                                 Six categorical colors emphasize geography even though the main message concerns
-                                redistribution. Similar colors for North and South America are also difficult to
-                                distinguish at the small point size.
+                                redistribution. Several cool-toned hues used for Africa, Europe, Asia, and Oceania
+                                are also difficult to distinguish at the small point size.
                             </p>
                         </div>
                     </article>
@@ -189,7 +189,8 @@
                 <label>
                     <span>Sort countries by</span>
                     <select id="sort-select">
-                        <option value="reduction">Largest reduction</option>
+                        <option value="reduction">Largest absolute reduction</option>
+                        <option value="percentReduction">Largest percent reduction</option>
                         <option value="disposable">Highest disposable Gini</option>
                         <option value="market">Highest market Gini</option>
                         <option value="country">Country name</option>
@@ -223,7 +224,7 @@
                 </div>
                 <div>
                     <span id="median-reduction" class="summary-value">0.16</span>
-                    <span class="summary-label">median Gini reduction</span>
+                    <span class="summary-label">median absolute reduction</span>
                 </div>
                 <p id="chart-status">Sorted by largest reduction.</p>
             </div>
@@ -264,17 +265,19 @@
                         <h3>Label every country and support purposeful ordering</h3>
                         <p>
                             Country names align in a dedicated column, eliminating selective labels and overlap.
-                            Sorting by reduction, either Gini measure, or name supports distinct comparison tasks.
+                            Sorting by absolute or percent reduction, either Gini measure, or name supports distinct
+                            comparison tasks while keeping absolute reduction as the default.
                         </p>
                     </div>
                 </article>
                 <article>
                     <span>3</span>
                     <div>
-                        <h3>Use color for measure type rather than region</h3>
+                        <h3>Reduce color competition and foreground the gap</h3>
                         <p>
-                            A restrained two-color encoding distinguishes before and after values. Region remains
-                            available as a filter, so geography can be explored without competing with the main message.
+                            Light and dark neutral points distinguish after and before values without introducing a
+                            competing categorical palette. Connector length becomes the visual focus, making absolute
+                            reduction explicit. Region remains available as a filter for secondary exploration.
                         </p>
                     </div>
                 </article>
@@ -297,7 +300,6 @@
                     <p class="section-number">05</p>
                     <h2 id="report-heading">Critique and redesign report</h2>
                 </div>
-                <span class="word-count">Approximately 600 words</span>
             </div>
 
             <article class="report-copy">
@@ -330,7 +332,8 @@
                     second problem. Only selected countries are named, many points cluster around the center, and users
                     cannot identify every observation from the static chart. Third, color primarily encodes world region.
                     That may support a secondary geographic question, but it competes with the before-and-after comparison;
-                    some hues are also similar at the small mark size. Finally, the title presents the chart as 2020 even
+                    several cool-toned regional hues are also similar at the small mark size. Finally, the title presents
+                    the chart as 2020 even
                     though the CSV contains country observations from 2011 through 2020. The footnote discloses this, but
                     its position and density make the limitation easy to miss.
                 </p>
@@ -340,13 +343,16 @@
                     The redesign uses a horizontal dumbbell plot. Each country occupies one row, with a dark point for
                     market Gini, a teal point for disposable Gini, and a connecting line whose length equals the absolute
                     reduction. This directly addresses the first weakness by turning diagonal distance into length along
-                    a shared scale. Countries are labeled consistently and can be sorted by reduction, either Gini measure,
-                    or alphabetically. Search and region filtering further reduce the cost of locating a country. These
+                    a shared scale. Countries are labeled consistently and can be sorted by absolute reduction, percent
+                    reduction, either Gini measure, or alphabetically. Search and region filtering further reduce the cost
+                    of locating a country. These
                     choices address overlap and selective labeling without adding decorative interaction.
                 </p>
                 <p>
-                    Color now distinguishes the two measures rather than regions. Region remains available as a filter,
-                    preserving that analytical task while giving the primary comparison greater visual priority. A tooltip
+                    A restrained light-dark neutral encoding distinguishes the two measures without making color the main
+                    story. This shifts attention to connector length, which directly represents absolute reduction. Region
+                    remains available as a filter, preserving that analytical task without competing with the primary
+                    comparison. A tooltip
                     provides exact values, the absolute and percentage reduction, region, and observation year. The year
                     range also appears below the chart so viewers encounter the comparability limitation in the same area
                     as the data. A value-label toggle allows precise reading while keeping the default display uncluttered.
