@@ -227,3 +227,168 @@
 .lab9-page #cartogram svg:active {
     cursor: grabbing;
 }
+
+.lab10-page {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.lab10-page section {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.lab10-controls {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 10px;
+    row-gap: 2px;
+    align-items: center;
+    margin: 18px 0 22px;
+    padding: 10px 16px 8px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    max-width: 960px;
+    background: #f9fafb;
+}
+
+.lab10-controls h3 {
+    flex-basis: 100%;
+    margin: 0 0 4px;
+}
+
+.lab10-controls input {
+    min-width: 220px;
+    flex: 1 1 260px;
+    padding: 8px 10px;
+}
+
+.lab10-controls button {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.lab10-controls button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+#voice-heard-status {
+    display: none;
+    flex-basis: 100%;
+    margin: 4px 0 0;
+}
+
+#voice-heard-status.active {
+    display: block;
+}
+
+#interaction-status {
+    flex-basis: 100%;
+    margin: 4px 0 0;
+}
+
+.lab10-secondary-controls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+    max-width: 960px;
+    margin: 0 0 22px;
+}
+
+.lab10-page .interaction-panel {
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    padding: 14px;
+    background: #ffffff;
+}
+
+.lab10-page .interaction-panel h3 {
+    margin: 0 0 8px;
+}
+
+.lab10-page .interaction-panel button {
+    margin: 4px 6px 6px 0;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.lab10-page .interaction-panel p {
+    margin: 6px 0 0;
+}
+
+#gesture-preview {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 20;
+    display: none;
+    width: min(260px, calc(100vw - 36px));
+    padding: 8px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.18);
+}
+
+#gesture-preview.active {
+    display: block;
+}
+
+#gesture-video {
+    display: block;
+    width: 100%;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background: #111827;
+    transform: scaleX(-1);
+}
+
+#gesture-preview p {
+    margin: 6px 0 0;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+#gesture-canvas {
+    display: none;
+}
+
+.lab10-page #choropleth,
+.lab10-page #cartogram {
+    width: calc(100vw - 16px);
+    max-width: 960px;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.lab10-page #choropleth svg,
+.lab10-page #cartogram svg {
+    display: block;
+    width: 100% !important;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    touch-action: none;
+    cursor: grab;
+}
+
+.lab10-page #cartogram .cartogram {
+    width: 100% !important;
+    max-width: 100%;
+}
+
+.lab10-page #cartogram .float-tooltip-kap {
+    display: none !important;
+}
+
+.lab10-page #choropleth .tick text,
+.lab10-page #cartogram .tick text {
+    font-family: sans-serif;
+    font-size: 10px;
+}
+
+.lab10-page #choropleth svg:active,
+.lab10-page #cartogram svg:active {
+    cursor: grabbing;
+}

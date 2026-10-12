@@ -5,14 +5,15 @@
 <head>
 
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Lab 10</title>
+    <title>Lab 10: Voice and Text Interaction</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<body>
+<body class="lab10-page">
 
-    <h1>Lab 10</h1>
+    <h1>STATS 401: Data Acquisition and Visualization</h1>
     <nav class="lab-nav">
         <a href="../lab1/index.html">Lab 1</a>
         <a href="../lab2/index.html">Lab 2</a>
@@ -25,16 +26,102 @@
         <a href="../lab9/index.html">Lab 9</a>
         <a class="active" href="../lab10/index.html">Lab 10</a>
         <a href="../visualization-critique-redesign/index.html">Visualization Critique and Redesign</a>
-    
     </nav>
-    <p>
-        Lab 10 will be added here.
-    </p>
+
+    <h2>Lab 10: Voice and Text Interaction for GDP Maps</h2>
+
+    <section>
+        <p>
+            This lab extends my Lab 9 geospatial visualization. The maps still show
+            nominal GDP estimates for the 50 largest economies in 2025, but users
+            can now select countries by voice or by typed search instead of relying
+            only on mouse hover.
+        </p>
+    </section>
+
+    <section class="lab10-controls" aria-label="Country search controls">
+        <h3>Find a Country</h3>
+        <button id="voice-button" type="button">Start voice search</button>
+        <input id="country-search" type="text" list="country-options" placeholder="Type a country name">
+        <datalist id="country-options"></datalist>
+        <button id="search-button" type="button">Search</button>
+        <button id="reset-button" type="button">Reset</button>
+        <p id="voice-heard-status"></p>
+        <p id="interaction-status">
+            Use voice or text to select a country.
+        </p>
+    </section>
+
+    <section class="lab10-secondary-controls" aria-label="Additional interaction controls">
+        <div class="interaction-panel">
+            <h3>Keyboard and Buttons</h3>
+            <button id="previous-country-button" type="button">Previous rank</button>
+            <button id="next-country-button" type="button">Next rank</button>
+            <p>
+                Use the left and right arrow keys to step through countries by GDP rank.
+            </p>
+        </div>
+
+        <div class="interaction-panel">
+            <h3>Camera Gesture</h3>
+            <button id="gesture-button" type="button">Start gesture input</button>
+            <button id="stop-gesture-button" type="button" disabled>Stop gesture input</button>
+            <p id="gesture-status">
+                Swipe left or right, then pause before the next gesture.
+            </p>
+        </div>
+
+    </section>
+
+    <section>
+        <h3>2025 GDP Choropleth</h3>
+        <p>
+            Color represents nominal GDP. Darker countries have larger economies.
+        </p>
+        <div id="choropleth"></div>
+    </section>
+
+    <section>
+        <h3>2025 GDP Cartogram</h3>
+        <p>
+            Country area represents nominal GDP in 2025.
+        </p>
+        <div id="cartogram"></div>
+    </section>
+
+    <section>
+        <h3>Interaction Reflection</h3>
+        <p>
+            I extended my Lab 9 choropleth and cartogram by adding voice and text
+            search, keyboard stepping, and camera gestures.
+            The original version depended on mouse hover, which works for
+            exploration but can be difficult when countries are small or distorted
+            in the cartogram. Voice and text let users jump directly to a country,
+            while keyboard arrows support quick rank-by-rank comparison. The webcam
+            gesture mode detects left and right motion so users can browse without
+            touching the keyboard. Because speech recognition and webcam access
+            vary by browser and permission settings, I kept text search, buttons,
+            and hover as fallbacks. Each input method gives immediate feedback
+            through linked map highlighting and a status message showing the
+            selected country's GDP rank and value.
+        </p>
+    </section>
+
+    <div id="tooltip" class="tooltip"></div>
+    <div id="gesture-preview" aria-live="polite">
+        <video id="gesture-video" autoplay muted playsinline></video>
+        <p>Gesture camera</p>
+    </div>
+    <canvas id="gesture-canvas" width="120" height="90"></canvas>
 
     <a href="../index.html">
         Back to home
     </a>
 
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="https://unpkg.com/topojson-server@3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cartogram-chart@1.4.4"></script>
+    <script src="lab10.js"></script>
 </body>
 
 </html>
